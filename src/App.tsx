@@ -1,9 +1,14 @@
 import React from "react";
-
+import { Route, Routes } from "react-router";
+import Home from "./pages/Home";
+import Albums from "./pages/Albums";
 function App() {
   return (
     <div>
-      <h1 className="bg-red-300">react </h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/albums" element={<Albums />} />
+      </Routes>
     </div>
   );
 }
