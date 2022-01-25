@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "@firebase/auth";
+import { auth } from "../configuration/firebase/firebase";
 import {
   SearchIcon,
   MenuIcon,
@@ -8,10 +10,14 @@ import {
   PhotographIcon,
   BellIcon,
   QuestionMarkCircleIcon,
+  LoginIcon,
+  LogoutIcon,
 } from "@heroicons/react/solid";
 import Logo from "../assets/images/Brand.png";
+import { useAppSelector } from "../hooks/hooks";
 const Navbar: FC = () => {
   const navigate: any = useNavigate();
+  const { userAuthenticated } = useAppSelector((state) => state.credentials);
   return (
     <nav className="shadow-sm border-b bg-white z-50 sticky top-0 ">
       <div className="flex justify-between max-w-6xl mx-5 xl:mx-auto">
@@ -49,30 +55,50 @@ const Navbar: FC = () => {
         <div className="flex items-center justify-between space-x-6">
           {/* <HomeIcon className="navBtn" onClick={() => navigate.push("/")} />
           <MenuIcon className="h-10 md:hidden cursor-pointer " /> */}
-          <div className="navTab " onClick={() => navigate("/albums")}>
-            <HomeIcon className="w-6 mr-1 peer" />
-            <h1 className="md:block hidden hover:block peer-hover:block transition-all">
-              Home
-            </h1>
-          </div>
-          <div className="navTab" onClick={() => navigate("/albums")}>
-            <PhotographIcon className="w-6 mr-1 peer" />
-            <h1 className="md:block hidden hover:block peer-hover:block">
-              Albums
-            </h1>
-          </div>
-          <div className="navTab">
-            <BellIcon className="w-6 mr-1 peer" />
-            <h1 className="md:block hidden hover:block peer-hover:block">
-              Notifications
-            </h1>
-          </div>
-          <div className="navTab">
-            <QuestionMarkCircleIcon className="w-6 mr-1 peer" />
-            <h1 className="md:block hidden hover:block peer-hover:block">
-              Help
-            </h1>
-          </div>
+          {userAuthenticated ? (
+            <>
+              <div className="navTab " onClick={() => navigate("/")}>
+                <HomeIcon className="w-6 mr-1 peer" />
+                <h1 className="md:block hidden hover:block peer-hover:block transition-all">
+                  Home
+                </h1>
+              </div>
+              <div className="navTab" onClick={() => navigate("/albums")}>
+                <PhotographIcon className="w-6 mr-1 peer" />
+                <h1 className="md:block hidden hover:block peer-hover:block">
+                  Albums
+                </h1>
+              </div>
+              <div className="navTab">
+                <BellIcon className="w-6 mr-1 peer" />
+                <h1 className="md:block hidden hover:block peer-hover:block">
+                  Notifications
+                </h1>
+              </div>
+              <div className="navTab">
+                <QuestionMarkCircleIcon className="w-6 mr-1 peer" />
+                <h1 className="md:block hidden hover:block peer-hover:block">
+                  Help
+                </h1>
+              </div>
+              <button
+                className="navTab border-2 border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out"
+                onClick={() => {
+                  signOut(auth);
+                  navigate("/enter");
+                }}
+              >
+                <LogoutIcon className="w-6 mr-1 peer" /> <span>Sign out</span>
+              </button>
+            </>
+          ) : (
+            <button
+              className="navTab border-2 border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out"
+              onClick={() => navigate("/enter")}
+            >
+              <LoginIcon className="w-6 mr-1 peer" /> <span>Sign in</span>
+            </button>
+          )}
 
           {/* {session ? (
             <>
