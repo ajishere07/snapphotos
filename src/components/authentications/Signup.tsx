@@ -3,7 +3,7 @@ import Input from "./Input";
 import Logo from "../../assets/images/Brand.png";
 import Button from "./Button";
 import HorizontalLine from "./HorizontalLine";
-import AuthFooter from "./AuthFooter";
+
 import { showSigninPage } from "../../features/Authentications/renderPage";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
