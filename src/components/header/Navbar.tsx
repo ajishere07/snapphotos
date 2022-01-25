@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "@firebase/auth";
-import { auth } from "../configuration/firebase/firebase";
+import { auth } from "../../configuration/firebase/firebase";
 import {
   HomeIcon,
   PhotographIcon,
@@ -10,8 +10,9 @@ import {
   LoginIcon,
   LogoutIcon,
 } from "@heroicons/react/solid";
-import Logo from "../assets/images/Brand.png";
-import { useAppSelector } from "../hooks/hooks";
+import Logo from "../../assets/images/Brand.png";
+import { useAppSelector } from "../../hooks/hooks";
+import TabTitle from "./TabTitle";
 const Navbar: FC = () => {
   const navigate: any = useNavigate();
   const { userAuthenticated } = useAppSelector((state) => state.credentials);
@@ -41,27 +42,19 @@ const Navbar: FC = () => {
             <>
               <div className="navTab " onClick={() => navigate("/")}>
                 <HomeIcon className="w-6 mr-1 peer" />
-                <h1 className="md:block hidden hover:block peer-hover:block transition-all">
-                  Home
-                </h1>
+                <TabTitle title="Home" />
               </div>
               <div className="navTab" onClick={() => navigate("/albums")}>
                 <PhotographIcon className="w-6 mr-1 peer" />
-                <h1 className="md:block hidden hover:block peer-hover:block">
-                  Albums
-                </h1>
+                <TabTitle title="Albums" />
               </div>
               <div className="navTab">
                 <BellIcon className="w-6 mr-1 peer" />
-                <h1 className="md:block hidden hover:block peer-hover:block">
-                  Notifications
-                </h1>
+                <TabTitle title="Notifications" />
               </div>
               <div className="navTab">
                 <QuestionMarkCircleIcon className="w-6 mr-1 peer" />
-                <h1 className="md:block hidden hover:block peer-hover:block">
-                  Help
-                </h1>
+                <TabTitle title="Help" />
               </div>
               <button
                 className="navTab border-2 border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out"

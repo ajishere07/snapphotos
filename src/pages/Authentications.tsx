@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Login from "../components/authentications/Login";
 import Signup from "../components/authentications/Signup";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/header/Navbar";
 import { useAppSelector } from "../hooks/hooks";
 
 const Authentications: FC = () => {
