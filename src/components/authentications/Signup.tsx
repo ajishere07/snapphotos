@@ -12,9 +12,9 @@ import {
   addUsername,
 } from "../../features/Authentications/userCredentialsSlice";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { setDoc, doc } from "@firebase/firestore";
+import { setDoc, doc, Timestamp } from "@firebase/firestore";
 import { auth, db } from "../../configuration/firebase/firebase";
-import { Timestamp } from "@firebase/firestore";
+
 import { NavigateFunction, useNavigate } from "react-router";
 const Signup: FC = () => {
   const [demo] = useState<string>("adfd");
