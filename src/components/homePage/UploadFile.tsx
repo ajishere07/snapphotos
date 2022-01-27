@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
 import {
   getDownloadURL,
   ref as sRef,
-  uploadBytes,
   uploadBytesResumable,
 } from "@firebase/storage";
 import { db, storage } from "../../configuration/firebase/firebase";
 import Button from "../authentications/Button";
 import { XCircleIcon } from "@heroicons/react/solid";
-import {
-  collection,
-  doc,
-  setDoc,
-  Timestamp,
-  addDoc,
-} from "@firebase/firestore";
+import { collection, Timestamp, addDoc } from "@firebase/firestore";
 import { useAppSelector } from "../../hooks/hooks";
 const UploadFile = () => {
   const { userAuthenticated } = useAppSelector((state) => state.credentials);
@@ -28,7 +21,7 @@ const UploadFile = () => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       setProgress(0);
-      // console.log(e.target.files[0]);
+
       setFileAsImage(e.target.files[0]);
       reader.readAsDataURL(e.target.files[0]);
 
@@ -42,11 +35,10 @@ const UploadFile = () => {
     if (!fileAsImage) return;
     try {
       setLoading(true);
-      // console.log(fileAsImage);
+
       const storageRef = sRef(storage, `/images/${fileAsImage.name}`);
       const uploadTask = uploadBytesResumable(storageRef, fileAsImage);
 
-      console.log(uploadTask);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -68,8 +60,6 @@ const UploadFile = () => {
           });
         }
       );
-
-      // setProgress(progressValue);
     } catch (e) {
       console.log(e);
     }
@@ -84,9 +74,6 @@ const UploadFile = () => {
     });
     console.log("done");
   };
-  // useEffect(() => {
-  //   uploadFile();
-  // }, [file]);
 
   return (
     <div className="my-4 rounded-lg bg-slate-200 flex justify-center items-center w-full hover:bg-slate-300 transition-all ease-out group">
