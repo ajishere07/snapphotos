@@ -39,11 +39,11 @@ const Home: FC = () => {
 
   return (
     <div>
-      <Navbar />
-      <main className="max-w-6xl min-h-screen grid grid-rows-2 mx-auto">
-        <UploadFile />
-        <PhotosListing images={images} />
-      </main>
+      {/* <Navbar /> */}
+      {/* <main className="max-w-6xl min-h-screen mx-auto"> */}
+      <UploadFile />
+      <PhotosListing images={images} />
+      {/* </main> */}
     </div>
   );
 };

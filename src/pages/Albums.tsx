@@ -5,7 +5,7 @@ type Props = {};
 const Albums = (props: Props) => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       albums
     </div>
   );

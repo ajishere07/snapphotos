@@ -18,7 +18,7 @@ const Navbar: FC = () => {
   const { userAuthenticated } = useAppSelector((state) => state.credentials);
   return (
     <nav className="shadow-sm border-b bg-white z-50 sticky top-0 ">
-      <div className="flex justify-between max-w-6xl mx-5 xl:mx-auto">
+      <div className="flex justify-between max-w-6xl mx-2 sm:mx-5 xl:mx-auto">
         {/* left */}
         <div
           className="relative hidden md:inline-flex md:items-center w-16 cursor-pointer"
@@ -52,10 +52,10 @@ const Navbar: FC = () => {
                 <BellIcon className="w-6 mr-1 peer" />
                 <TabTitle title="Notifications" />
               </div>
-              <div className="navTab">
+              {/* <div className="navTab">
                 <QuestionMarkCircleIcon className="w-6 mr-1 peer" />
                 <TabTitle title="Help" />
-              </div>
+              </div> */}
               <button
                 className="navTab border-2 border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out"
                 onClick={() => {

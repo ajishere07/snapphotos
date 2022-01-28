@@ -76,41 +76,41 @@ const UploadFile = () => {
   };
 
   return (
-    <div className="my-4 rounded-lg bg-slate-200 flex justify-center items-center w-full hover:bg-slate-300 transition-all ease-out group">
-      <div className="relative ">
-        {!fileAsImage ? (
-          <>
-            <PlusIcon className="w-12 mx-auto text-slate-400 group-hover:rotate-180 transition-transform target:duration-150" />
-            <label className="text-center text-slate-400">Upload a photo</label>
-            <input
-              type="file"
-              className="absolute left-0 top-0 h-full w-full overflow-hidden opacity-0"
-              onChange={storeFile}
-            ></input>
-          </>
-        ) : (
-          <div className=" max-w-xl grid grid-cols-1 ">
-            <img
-              src={fileAsURL}
-              className="w-32 h-32 object-contain"
-              alt="img"
-            />
-            <div className="">
-              {loading && <h1>Upload {progress}%</h1>}
-              <div className="flex items-center ">
-                <Button
-                  fun={uploadFile}
-                  buttonName={loading ? `Uploading...` : `Upload`}
-                />
-                <XCircleIcon
-                  className="text-red-500 w-16 h-16"
-                  onClick={() => setFileAsImage(null)}
-                ></XCircleIcon>
-              </div>
+    <div className="my-4 rounded-lg bg-slate-200 flex justify-center items-center w-full hover:bg-slate-300 transition-all ease-out group h-64">
+      {!fileAsImage ? (
+        <div className="relative">
+          <PlusIcon className="w-12 mx-auto text-slate-400 group-hover:rotate-180 transition-transform target:duration-150" />
+          <label className="text-center text-slate-400">Upload a photo</label>
+          <input
+            type="file"
+            className="absolute left-0 top-0 h-full w-full overflow-hidden opacity-0"
+            onChange={storeFile}
+          />
+        </div>
+      ) : (
+        <div className="w-3/5 md:w-2/5 h-full ">
+          <img
+            src={fileAsURL}
+            className="w-full h-4/6 object-contain"
+            alt="img"
+          />
+          <div className="">
+            {loading && (
+              <h1 className="text-center text-md">Upload {progress}%</h1>
+            )}
+            <div className="flex items-center font-semibold">
+              <Button
+                fun={uploadFile}
+                buttonName={loading ? `Uploading...` : `Upload`}
+              />
+              <XCircleIcon
+                className="text-red-500 w-16 h-16 cursor-pointer hover:text-red-600"
+                onClick={() => setFileAsImage(null)}
+              />
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

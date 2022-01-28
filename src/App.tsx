@@ -8,6 +8,7 @@ import { auth } from "./configuration/firebase/firebase";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { authenticated } from "./features/Authentications/userCredentialsSlice";
 import ProtectedRoute from "./components/protected_route/ProtectedRoute";
+import Navbar from "./components/header/Navbar";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -24,13 +25,16 @@ function App() {
   if (loading) <div>Loading</div>;
   return (
     <div>
-      <Routes>
-        <Route path="/enter" element={<Authentications />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/albums" element={<Albums />} />
-        </Route>
-      </Routes>
+      <Navbar />
+      <div className="pt-8 max-w-6xl mx-auto my-0 min-h-screen px-8">
+        <Routes>
+          <Route path="/enter" element={<Authentications />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/albums" element={<Albums />} />
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }
