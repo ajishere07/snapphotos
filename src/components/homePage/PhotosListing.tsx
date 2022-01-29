@@ -1,7 +1,9 @@
 import { FC, useRef, useState } from "react";
-
 import Loader from "../../assets/animations/Loader";
-import LoadingImage from "../../assets/animations/loadingIcon.png";
+import { db, storage } from "../../configuration/firebase/firebase";
+import { TrashIcon } from "@heroicons/react/solid";
+import { deleteObject, ref } from "@firebase/storage";
+import { deleteDoc, doc } from "@firebase/firestore";
 interface Props {
   images: any;
 }
@@ -9,7 +11,23 @@ const PhotosListing: FC<Props> = ({ images }) => {
   const [loading, setLoading] = useState(true);
 
   console.log(images);
+  const deleted = async (imageName: string, dataId: string) => {
+    console.log("deleted");
+    //deleting the image file from storage
+    const imgRef = ref(storage, `images/${imageName}`);
 
+    deleteObject(imgRef)
+      .then(() => {
+        alert("file deleted");
+      })
+      .catch((e) => {
+        console.log("error", e);
+      });
+    //deleting the download link of the image file from the firestore
+    const imgDataRef = doc(db, "/images", dataId);
+    const res = await deleteDoc(imgDataRef);
+    console.log(res);
+  };
   return (
     <div className="w-full">
       <h1 className="my-4">All images</h1>
@@ -31,9 +49,12 @@ const PhotosListing: FC<Props> = ({ images }) => {
                 className="peer w-full h-full object-contain mr-2 mb-2 hover:opacity-50  transition-opacity target:duration-75 hover:border-2 border-black"
                 alt="img"
               />
-
+              <TrashIcon
+                className="absolute bottom-1 hidden right-1 w-6 h-6 hover:block hover:scale-150 text-secondaryDark peer-hover:block cursor-pointer transition-all ease-out"
+                onClick={() => deleted(data.imageName, data.userId)}
+              />
               {loading && (
-                <div className="w-full h-full flex justify-center items-center">
+                <div className="w-full h-full flex justify-center items-center cursor-pointer">
                   <div
                     className="
     spinner-border

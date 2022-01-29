@@ -8,7 +8,13 @@ import {
 import { db, storage } from "../../configuration/firebase/firebase";
 import Button from "../authentications/Button";
 import { XCircleIcon } from "@heroicons/react/solid";
-import { collection, Timestamp, addDoc } from "@firebase/firestore";
+import {
+  collection,
+  Timestamp,
+  addDoc,
+  setDoc,
+  doc,
+} from "@firebase/firestore";
 import { useAppSelector } from "../../hooks/hooks";
 const UploadFile = () => {
   const { userAuthenticated } = useAppSelector((state) => state.credentials);
@@ -66,7 +72,7 @@ const UploadFile = () => {
   };
   const saveURLToFirebase = async (url: string) => {
     console.log("start");
-    await addDoc(collection(db, "images"), {
+    await setDoc(doc(db, "images", userAuthenticated.uid), {
       userId: userAuthenticated.uid,
       imageName: fileAsImage.name,
       imageURL: url,
