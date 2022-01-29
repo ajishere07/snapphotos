@@ -76,7 +76,7 @@ const UploadFile = () => {
   };
 
   return (
-    <div className="my-4 rounded-lg bg-slate-200 flex justify-center items-center w-full hover:bg-slate-300 transition-all ease-out group h-64">
+    <div className=" rounded-lg bg-slate-200 flex justify-center items-center w-full hover:bg-slate-300 transition-all ease-out group h-64">
       {!fileAsImage ? (
         <div className="relative">
           <PlusIcon className="w-12 mx-auto text-slate-400 group-hover:rotate-180 transition-transform target:duration-150" />

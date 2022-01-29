@@ -12,8 +12,7 @@ const Authentications: FC = () => {
   );
   return (
     <>
-      <Navbar />
-      <main className="bg-slate-100 min-h-screen pt-2">
+      <main className=" min-h-screen pt-2">
         {renderPage ? <Login /> : <Signup />}
       </main>
     </>

@@ -26,7 +26,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <div className="pt-8 max-w-6xl mx-auto my-0 min-h-screen px-8">
+      <div className="pt-10 bg-slate-100 max-w-6xl mx-auto my-0 min-h-screen px-8">
         <Routes>
           <Route path="/enter" element={<Authentications />} />
           <Route element={<ProtectedRoute />}>

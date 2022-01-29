@@ -6,7 +6,7 @@ const Albums = (props: Props) => {
   return (
     <div>
       {/* <Navbar /> */}
-      albums
+      !!Working on albums feature 🚧 🚧 🚧 🚧
     </div>
   );
 };
