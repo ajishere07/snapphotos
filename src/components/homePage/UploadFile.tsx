@@ -76,11 +76,13 @@ const UploadFile = () => {
   };
 
   return (
-    <div className=" rounded-lg bg-slate-200 flex justify-center items-center w-full hover:bg-slate-300 transition-all ease-out group h-64">
+    <div className=" rounded-lg bg-secondary flex justify-center items-center w-full hover:bg-hoveredSecondary transition-all ease-out group h-64">
       {!fileAsImage ? (
         <div className="relative">
-          <PlusIcon className="w-12 mx-auto text-slate-400 group-hover:rotate-180 transition-transform target:duration-150" />
-          <label className="text-center text-slate-400">Upload a photo</label>
+          <PlusIcon className="w-12 mx-auto text-secondaryDark group-hover:rotate-180 transition-transform target:duration-150" />
+          <label className="text-center text-secondaryDark">
+            Upload a photo
+          </label>
           <input
             type="file"
             className="absolute left-0 top-0 h-full w-full overflow-hidden opacity-0"
@@ -104,7 +106,7 @@ const UploadFile = () => {
                 buttonName={loading ? `Uploading...` : `Upload`}
               />
               <XCircleIcon
-                className="text-red-500 w-16 h-16 cursor-pointer hover:text-red-600"
+                className="text-cancelBtn w-16 h-16 cursor-pointer hover:text-hoveredCancelBtn"
                 onClick={() => setFileAsImage(null)}
               />
             </div>

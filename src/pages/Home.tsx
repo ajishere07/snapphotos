@@ -9,7 +9,7 @@ import { db } from "../configuration/firebase/firebase";
 
 const Home: FC = () => {
   const { userAuthenticated } = useAppSelector((state) => state.credentials);
-  const [images, setImages] = useState<any>([]);
+  const [images, setImages] = useState<any>(null);
 
   useEffect(() => {
     if (userAuthenticated) {
@@ -38,12 +38,9 @@ const Home: FC = () => {
   console.log(images);
 
   return (
-    <div>
-      {/* <Navbar /> */}
-      {/* <main className="max-w-6xl min-h-screen mx-auto"> */}
+    <div className="h-full">
       <UploadFile />
       <PhotosListing images={images} />
-      {/* </main> */}
     </div>
   );
 };

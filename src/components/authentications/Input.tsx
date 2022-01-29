@@ -46,7 +46,7 @@ const Input: FC<Props> = ({ typeOfInput, titleOfInput, placeholder }) => {
         type={typeOfInput}
         placeholder={placeholder}
         required
-        className="block w-full h-10 rounded-md outline-none border-2 border-slate-400 focus:border-black hover:border-slate-500 px-2"
+        className="block w-full h-10 rounded-md outline-none border-2 border-secondary focus:border-black hover:border-secondaryDark px-2  transition-all"
       />
     </div>
   );

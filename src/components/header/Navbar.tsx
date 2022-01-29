@@ -17,7 +17,7 @@ const Navbar: FC = () => {
   const navigate: any = useNavigate();
   const { userAuthenticated } = useAppSelector((state) => state.credentials);
   return (
-    <nav className="shadow-sm border-b bg-white z-50 sticky top-0 ">
+    <nav className=" shadow-lg bg-white z-50 sticky top-0 ">
       <div className="flex justify-between max-w-6xl mx-2 sm:mx-5 xl:mx-auto">
         {/* left */}
         <div
