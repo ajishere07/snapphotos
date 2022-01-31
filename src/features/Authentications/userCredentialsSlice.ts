@@ -27,19 +27,14 @@ export const userCredentialSlice = createSlice({
     addPassword: (state, { payload }) => {
       state.password = payload;
     },
-    authenticated: (state, { payload }) => {
-      state.userAuthenticated = payload;
-    },
   },
 });
 
-export const { addUsername, addEmail, addPassword, authenticated } =
+export const { addUsername, addEmail, addPassword } =
   userCredentialSlice.actions;
 
 export const selectName = (state: RootState) => state.credentials.name;
 export const selectEmail = (state: RootState) => state.credentials.email;
 export const selectPassword = (state: RootState) => state.credentials.password;
-export const selectUserAuth = (state: RootState) =>
-  state.credentials.userAuthenticated;
 
 export default userCredentialSlice.reducer;

@@ -1,21 +1,21 @@
 import { useState, useEffect, FC } from "react";
-import Navbar from "../components/header/Navbar";
 
 import UploadFile from "../components/homePage/UploadFile";
 import PhotosListing from "../components/homePage/PhotosListing";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
-import { useAppSelector } from "../hooks/hooks";
-import { db } from "../configuration/firebase/firebase";
 
-const Home: FC = () => {
-  const { userAuthenticated } = useAppSelector((state) => state.credentials);
+import { db } from "../configuration/firebase/firebase";
+interface auth {
+  userCre: any;
+}
+const Home: FC<auth> = ({ userCre }) => {
   const [images, setImages] = useState<any>(null);
 
   useEffect(() => {
-    if (userAuthenticated) {
-      fetchData(userAuthenticated.uid);
+    if (userCre) {
+      fetchData(userCre.uid);
     }
-  }, []);
+  }, [userCre]);
   const fetchData = async (id: string) => {
     //firebase database reference
 
@@ -31,15 +31,12 @@ const Home: FC = () => {
         imagesArr.push({ ...doc.data() });
       });
       setImages(imagesArr);
-      console.log(imagesArr);
-      console.log(images);
     });
   };
-  console.log(images);
 
   return (
     <div className="h-full">
-      <UploadFile />
+      <UploadFile userAuth={userCre} />
       <PhotosListing images={images} />
     </div>
   );

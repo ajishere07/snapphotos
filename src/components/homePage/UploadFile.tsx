@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -9,16 +9,12 @@ import {
 import { db, storage } from "../../configuration/firebase/firebase";
 import Button from "../authentications/Button";
 import { XCircleIcon } from "@heroicons/react/solid";
-import {
-  collection,
-  Timestamp,
-  addDoc,
-  setDoc,
-  doc,
-} from "@firebase/firestore";
-import { useAppSelector } from "../../hooks/hooks";
-const UploadFile = () => {
-  const { userAuthenticated } = useAppSelector((state) => state.credentials);
+import { Timestamp, setDoc, doc } from "@firebase/firestore";
+
+interface auth {
+  userAuth: any;
+}
+const UploadFile: FC<auth> = ({ userAuth }) => {
   const [fileAsURL, setFileAsURL] = useState<any | null>();
   const [fileAsImage, setFileAsImage] = useState<any>();
 
@@ -37,7 +33,7 @@ const UploadFile = () => {
       };
     }
   };
-  console.log(progress);
+
   const uploadFile = () => {
     if (!fileAsImage) return;
     try {
@@ -72,17 +68,14 @@ const UploadFile = () => {
     }
   };
   const saveURLToFirebase = async (url: string) => {
-    console.log("start");
     const id = uuidv4();
-    const res = await setDoc(doc(db, "images", id), {
+    await setDoc(doc(db, "images", id), {
       id,
-      userId: userAuthenticated.uid,
+      userId: userAuth.uid,
       imageName: fileAsImage.name,
       imageURL: url,
       uploadedAt: Timestamp.fromDate(new Date()),
     });
-
-    console.log("done");
   };
 
   return (

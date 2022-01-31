@@ -11,7 +11,6 @@ const PhotosListing: FC<Props> = ({ images }) => {
   const [loading, setLoading] = useState(true);
 
   const deleted = async (imageName: string, dataId: string) => {
-    console.log("deleted");
     //deleting the image file from storage
     const imgRef = ref(storage, `images/${imageName}`);
 
@@ -25,7 +24,6 @@ const PhotosListing: FC<Props> = ({ images }) => {
     //deleting the download link of the image file from the firestore
     const imgDataRef = doc(db, "/images", dataId);
     const res = await deleteDoc(imgDataRef);
-    console.log(res);
   };
   return (
     <div className="w-full">
