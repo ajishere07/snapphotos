@@ -10,7 +10,6 @@ interface Props {
 const PhotosListing: FC<Props> = ({ images }) => {
   const [loading, setLoading] = useState(true);
 
-  console.log(images);
   const deleted = async (imageName: string, dataId: string) => {
     console.log("deleted");
     //deleting the image file from storage
@@ -46,12 +45,12 @@ const PhotosListing: FC<Props> = ({ images }) => {
                   setLoading(false);
                 }}
                 style={{ display: loading ? "none" : "block" }}
-                className="peer w-full h-full object-contain mr-2 mb-2 hover:opacity-50  transition-opacity target:duration-75 hover:border-2 border-black"
+                className=" cursor-pointer peer w-full h-full object-contain mr-2 mb-2 hover:opacity-50  transition-opacity target:duration-75 hover:border-2 border-black"
                 alt="img"
               />
               <TrashIcon
                 className="absolute bottom-1 hidden right-1 w-6 h-6 hover:block hover:scale-150 text-secondaryDark peer-hover:block cursor-pointer transition-all ease-out"
-                onClick={() => deleted(data.imageName, data.userId)}
+                onClick={() => deleted(data.imageName, data.id)}
               />
               {loading && (
                 <div className="w-full h-full flex justify-center items-center cursor-pointer">

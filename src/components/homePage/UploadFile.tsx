@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
+import { v4 as uuidv4 } from "uuid";
 import {
   getDownloadURL,
   ref as sRef,
@@ -72,12 +73,15 @@ const UploadFile = () => {
   };
   const saveURLToFirebase = async (url: string) => {
     console.log("start");
-    await setDoc(doc(db, "images", userAuthenticated.uid), {
+    const id = uuidv4();
+    const res = await setDoc(doc(db, "images", id), {
+      id,
       userId: userAuthenticated.uid,
       imageName: fileAsImage.name,
       imageURL: url,
       uploadedAt: Timestamp.fromDate(new Date()),
     });
+
     console.log("done");
   };
 
