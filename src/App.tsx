@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/protected_route/ProtectedRoute";
 import Navbar from "./components/header/Navbar";
 
 import Help from "./components/help/Help";
+import SplashPage from "./assets/animations/SplashPage";
 
 function App() {
   const location = useLocation();
@@ -23,7 +24,7 @@ function App() {
       setLoading(false);
     });
   }, []);
-  if (loading) return <h1>Loading</h1>;
+  if (loading) return <SplashPage />;
   return (
     <div>
       <Navbar userCre={user} />
