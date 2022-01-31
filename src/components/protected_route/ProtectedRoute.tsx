@@ -1,9 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { Outlet, Navigate } from "react-router";
-import { useAppSelector } from "../../hooks/hooks";
-const ProtectedRoute = () => {
-  const { userAuthenticated } = useAppSelector((state) => state.credentials);
-  return userAuthenticated ? <Outlet /> : <Navigate to="/enter" />;
+
+interface auth {
+  userCre: any;
+}
+const ProtectedRoute: FC<auth> = ({ userCre }) => {
+  return userCre ? <Outlet /> : <Navigate to="/enter" />;
 };
 
 export default ProtectedRoute;

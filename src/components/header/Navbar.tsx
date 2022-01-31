@@ -6,16 +6,19 @@ import {
   HomeIcon,
   PhotographIcon,
   BellIcon,
-  QuestionMarkCircleIcon,
   LoginIcon,
   LogoutIcon,
 } from "@heroicons/react/solid";
 import Logo from "../../assets/images/Brand.png";
-import { useAppSelector } from "../../hooks/hooks";
+
 import TabTitle from "./TabTitle";
-const Navbar: FC = () => {
+
+interface userAuth {
+  userCre: any;
+}
+const Navbar: FC<userAuth> = ({ userCre }) => {
   const navigate: any = useNavigate();
-  const { userAuthenticated } = useAppSelector((state) => state.credentials);
+
   return (
     <nav className=" shadow-lg bg-white z-50 sticky top-0 ">
       <div className="flex justify-between max-w-6xl mx-2 sm:mx-5 xl:mx-auto">
@@ -38,7 +41,7 @@ const Navbar: FC = () => {
         </div>
 
         <div className="flex items-center justify-between space-x-6">
-          {userAuthenticated ? (
+          {userCre ? (
             <>
               <div className="navTab " onClick={() => navigate("/")}>
                 <HomeIcon className="w-6 mr-1 peer" />

@@ -45,12 +45,12 @@ const Login = () => {
         placeholder="Enter your password"
       />
       <Button buttonName="Sign in" fun={signinUser} />
-      <HorizontalLine contentBetweenLine="Login via GOOGLE" />
+      {/* <HorizontalLine contentBetweenLine="Login via GOOGLE" /> */}
       {/* TODO: Google sign in option */}
-      <h1 className="text-sm text-center ">
+      <h1 className="text-sm text-center my-4">
         Don't Have An Account &nbsp;
         <span
-          className="hover:underline text-blue-400 cursor-pointer"
+          className="hover:underline text-link cursor-pointer"
           onClick={() => dispatch(showSignupPage(false))}
         >
           Create An Account
