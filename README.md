@@ -1,3 +1,11 @@
+# About
+SnapPhotos where you can store your image files and download whenver you want it. React Project.
+
+# Screenshot
+![deletedguide](https://user-images.githubusercontent.com/73534589/151845676-7de481bf-0f60-4c61-bcd2-498b2af5ef3a.png)
+![ImgDownload](https://user-images.githubusercontent.com/73534589/151845699-beef6567-0722-4fda-afd8-a3445da556a2.png)
+![images_striveforprogress jpg (564×376) (1)](https://user-images.githubusercontent.com/73534589/151845792-d49744a0-87be-4d50-bdc2-0c6cebf1dec2.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
