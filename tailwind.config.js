@@ -13,6 +13,7 @@ module.exports = {
       hoveredCancelBtn: "#dc2626",
       brand: "#2dd4bf",
       white: "#ffffff",
+      link: "#2593D4",
     },
   },
   plugins: [require("tw-elements/dist/plugin")],

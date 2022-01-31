@@ -4,6 +4,7 @@ import { db, storage } from "../../configuration/firebase/firebase";
 import { TrashIcon } from "@heroicons/react/solid";
 import { deleteObject, ref } from "@firebase/storage";
 import { deleteDoc, doc } from "@firebase/firestore";
+import img from "../../assets/images/NoImagesIllustration.svg";
 interface Props {
   images: any;
 }
@@ -25,6 +26,18 @@ const PhotosListing: FC<Props> = ({ images }) => {
     const imgDataRef = doc(db, "/images", dataId);
     const res = await deleteDoc(imgDataRef);
   };
+  console.log(images);
+  if (!images?.length)
+    return (
+      <div className="w-full h-64 my-2 flex justify-center items-center">
+        <div>
+          <img src={img} alt="No Data" className="h-48 w-48 object-contain" />
+          <h1 className=" font-serif text-center font-extrabold opacity-40 text-3xl">
+            No Images
+          </h1>
+        </div>
+      </div>
+    );
   return (
     <div className="w-full">
       <h1 className="my-4">All images</h1>

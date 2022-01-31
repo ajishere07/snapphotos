@@ -75,13 +75,13 @@ const Signup: FC = () => {
         placeholder="Enter your password"
       />
       <Button buttonName="Sign up" fun={signupUser} />
-      <HorizontalLine contentBetweenLine="Sign up using" />
+      {/* <HorizontalLine contentBetweenLine="Sign up using" /> */}
       {/* TODO: Google sign in option */}
 
-      <h1 className="text-sm text-center">
+      <h1 className="text-sm text-center my-4">
         Already have an account &nbsp;
         <span
-          className="hover:underline text-blue-400 cursor-pointer"
+          className="hover:underline text-link  cursor-pointer"
           onClick={() => dispatch(showSigninPage(true))}
         >
           Login
