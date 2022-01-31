@@ -26,7 +26,7 @@ const PhotosListing: FC<Props> = ({ images }) => {
     const imgDataRef = doc(db, "/images", dataId);
     const res = await deleteDoc(imgDataRef);
   };
-  console.log(images);
+
   if (!images?.length)
     return (
       <div className="w-full h-64 my-2 flex justify-center items-center">
