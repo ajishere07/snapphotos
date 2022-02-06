@@ -5,6 +5,7 @@ import { TrashIcon } from "@heroicons/react/solid";
 import { deleteObject, ref } from "@firebase/storage";
 import { deleteDoc, doc } from "@firebase/firestore";
 import img from "../../assets/images/NoImagesIllustration.svg";
+import toast, { Toaster } from "react-hot-toast";
 interface Props {
   images: any;
 }
@@ -17,7 +18,7 @@ const PhotosListing: FC<Props> = ({ images }) => {
 
     deleteObject(imgRef)
       .then(() => {
-        alert("file deleted");
+        toast.error("Removed The Photo");
       })
       .catch((e) => {
         console.log("error", e);
@@ -90,6 +91,7 @@ const PhotosListing: FC<Props> = ({ images }) => {
           <Loader />
         </div>
       )}
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
