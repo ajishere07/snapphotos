@@ -16,6 +16,7 @@ import { setDoc, doc, Timestamp } from "@firebase/firestore";
 import { auth, db } from "../../configuration/firebase/firebase";
 
 import { NavigateFunction, useNavigate } from "react-router";
+import toast, { Toaster } from "react-hot-toast";
 const Signup: FC = () => {
   const [demo] = useState<string>("adfd");
   const dispatch = useAppDispatch();
@@ -47,6 +48,7 @@ const Signup: FC = () => {
         addUsername("");
         addPassword("");
       });
+      toast(`Hello, ${name}`, { icon: "👋" });
       navigate("/");
     } catch (err) {
       alert(err);
@@ -87,6 +89,7 @@ const Signup: FC = () => {
           Login
         </span>
       </h1>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

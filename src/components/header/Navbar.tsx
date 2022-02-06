@@ -12,6 +12,7 @@ import {
 import Logo from "../../assets/images/Brand.png";
 
 import TabTitle from "./TabTitle";
+import toast, { Toaster } from "react-hot-toast";
 
 interface userAuth {
   userCre: any;
@@ -63,6 +64,14 @@ const Navbar: FC<userAuth> = ({ userCre }) => {
                 className="navTab border-2 border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out"
                 onClick={() => {
                   signOut(auth);
+                  toast(
+                    () => (
+                      <span>
+                        <LogoutIcon className="w-4 inline" /> Logged Out
+                      </span>
+                    ),
+                    { duration: 2000 }
+                  );
                   navigate("/enter");
                 }}
               >
@@ -79,6 +88,7 @@ const Navbar: FC<userAuth> = ({ userCre }) => {
           )}
         </div>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </nav>
   );
 };

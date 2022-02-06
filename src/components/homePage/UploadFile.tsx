@@ -10,6 +10,7 @@ import { db, storage } from "../../configuration/firebase/firebase";
 import Button from "../authentications/Button";
 import { XCircleIcon } from "@heroicons/react/solid";
 import { Timestamp, setDoc, doc } from "@firebase/firestore";
+import toast, { Toaster } from "react-hot-toast";
 
 interface auth {
   userAuth: any;
@@ -52,6 +53,7 @@ const UploadFile: FC<auth> = ({ userAuth }) => {
           if (progressVal === 100) {
             setFileAsImage(null);
             setLoading(false);
+            toast.success("Photo Stored");
           }
         },
         (err) => {
@@ -69,7 +71,7 @@ const UploadFile: FC<auth> = ({ userAuth }) => {
   };
   const saveURLToFirebase = async (url: string) => {
     const id = uuidv4();
-    await setDoc(doc(db, "images", id), {
+    const result = await setDoc(doc(db, "images", id), {
       id,
       userId: userAuth.uid,
       imageName: fileAsImage.name,
@@ -116,6 +118,7 @@ const UploadFile: FC<auth> = ({ userAuth }) => {
           </div>
         </div>
       )}
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

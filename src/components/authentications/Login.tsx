@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { showSignupPage } from "../../features/Authentications/renderPage";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { db, auth } from "../../configuration/firebase/firebase";
+import toast, { Toaster } from "react-hot-toast";
+import { LoginIcon } from "@heroicons/react/solid";
 const Login = () => {
   const navigate: any = useNavigate();
 
@@ -21,7 +23,14 @@ const Login = () => {
     }
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("logged in");
+      toast(
+        () => (
+          <span>
+            <LoginIcon className="w-4 inline" /> Logged in
+          </span>
+        ),
+        { duration: 2000 }
+      );
       navigate("/");
     } catch (err) {
       alert(err);
@@ -56,6 +65,7 @@ const Login = () => {
           Create An Account
         </span>
       </h1>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
