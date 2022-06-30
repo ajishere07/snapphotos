@@ -9,9 +9,27 @@ import { signInWithEmailAndPassword } from "@firebase/auth";
 import { db, auth } from "../../configuration/firebase/firebase";
 import toast, { Toaster } from "react-hot-toast";
 import { LoginIcon } from "@heroicons/react/solid";
+import { useEffect } from "react";
 const Login = () => {
   const navigate: any = useNavigate();
-
+  useEffect(() => {
+    toast(
+      () => (
+        <div>
+          <b>Quick Login</b>
+          <p>
+            <b>Email : </b> demoo@gmail.com
+          </p>
+          <p>
+            <b>Password :</b> demo12345
+          </p>
+        </div>
+      ),
+      {
+        duration: 40000,
+      }
+    );
+  }, []);
   const dispatch = useAppDispatch();
   const { name, email, password } = useAppSelector(
     (state) => state.credentials

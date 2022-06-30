@@ -1,8 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Input from "./Input";
 import Logo from "../../assets/images/Brand.png";
 import Button from "./Button";
-import HorizontalLine from "./HorizontalLine";
 
 import { showSigninPage } from "../../features/Authentications/renderPage";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
@@ -89,7 +88,11 @@ const Signup: FC = () => {
           Login
         </span>
       </h1>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{ duration: 30000 }}
+      />
     </div>
   );
 };
